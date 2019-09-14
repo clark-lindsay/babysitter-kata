@@ -1,0 +1,16 @@
+{
+  "name": "babysitter-kata",
+  "version": "1.0.0",
+  "description": "A practice exercise for TDD and object oriented design",
+  "main": "index.js",
+  "repository": "https://github.com/clark-lindsay/babysitter-kata.git",
+  "author": "clark-lindsay <clarklindsay96@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
