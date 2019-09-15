@@ -4,7 +4,9 @@ class Family {
     }
 
     chargeForBabysitting(startTime, endTime) {
-        return 15;
+        let hoursWorked = endTime - startTime;
+
+        return hoursWorked * 15;
     }
 }
 
