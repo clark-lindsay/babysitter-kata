@@ -4,12 +4,11 @@ class Family {
     }
 
     chargeForBabysitting(startTime, endTime) {
-        console.log(this.payAmountForTimeRange);
         let hoursWorked = this.calculateHoursWorked(startTime, endTime);
         let totalPay = 0;
         for (const [key, value] of Object.entries(this.payAmountForTimeRange)) {
+            const payWindowStart = parseInt(key.split(',')[0]);
             const payWindowHours = this.calculateHoursWorked(parseInt(key.split(',')[0]), parseInt(key.split(',')[1]));
-            console.log(parseInt(key.split(',')[0]));
             const hoursInPayWindow = Math.min(payWindowHours, hoursWorked);
 
             totalPay += hoursInPayWindow * value;
