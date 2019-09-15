@@ -17,7 +17,7 @@ class Family {
             }
 
             periodEnd = this.timeIsWithinPeriod(periodEnd, payWindowStart, payWindowEnd) ? periodEnd : payWindowEnd;
-            const hoursInPayWindow = this.calculateHoursWorked(periodStart, periodEnd);
+            const hoursInPayWindow = this.calculateHoursWorked(Math.floor(periodStart), Math.ceil(periodEnd));
 
             totalPay += hoursInPayWindow * value;
             if (this.timeIsWithinPeriod(endTime, payWindowStart, payWindowEnd)) {
