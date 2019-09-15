@@ -13,20 +13,19 @@ class Family {
             const payWindowEnd = parseInt(key.split(',')[1]);
 
             if (!this.timeIsWithinPeriod(periodStart, payWindowStart, payWindowEnd)) {
-                console.log(`The time ${periodStart} is not within the window of [${payWindowStart}, ${payWindowEnd}]`);
                continue; 
             }
 
             periodEnd = this.timeIsWithinPeriod(periodEnd, payWindowStart, payWindowEnd) ? periodEnd : payWindowEnd;
             const hoursInPayWindow = this.calculateHoursWorked(periodStart, periodEnd);
-            console.log(`Hours in pay window: ${hoursInPayWindow} at a rate of: ${value}`);
 
             totalPay += hoursInPayWindow * value;
-            periodStart = payWindowEnd;
-            periodEnd = endTime;
             if (this.timeIsWithinPeriod(endTime, payWindowStart, payWindowEnd)) {
                 break;
             }
+
+            periodStart = payWindowEnd;
+            periodEnd = endTime;
         }
         return totalPay;
     }
@@ -41,14 +40,16 @@ class Family {
     }
 
     timeIsWithinPeriod(time, periodStart, periodEnd) {
+        const clockPassesMidnight = periodStart > periodEnd;
+
         if (time >= periodStart && time <= periodEnd) {
             return true;
         }
-        else if (time >= periodStart && time >= periodEnd && periodStart > periodEnd)
+        else if (time >= periodStart && time >= periodEnd && clockPassesMidnight)
         {
             return true;
         }
-        else if (time <= periodStart && time <= periodEnd && periodStart > periodEnd) {
+        else if (time <= periodStart && time <= periodEnd && clockPassesMidnight) {
             return true;
         }
         else {
