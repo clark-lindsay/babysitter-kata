@@ -17,8 +17,17 @@ describe('the calculate pay function', () => {
 
     it('pays different hourly rates throughout the night, including past midnight', () => {
         const familyA = new family({ [[5, 11]]: 15, [[11, 4]]: 20 });
-        const nigthsPay = familyA.chargeForBabysitting(5, 4);
+        const paycheckOne = familyA.chargeForBabysitting(5, 4);
+        const paycheckTwo = familyA.chargeForBabysitting(7, 2);
 
-        expect(nigthsPay).toEqual(190);
+        expect(paycheckOne).toEqual(190);
+        expect(paycheckTwo).toEqual(120);
+    });
+
+    it('can skip a pay window entirely, without negatively impacting pay', () => {
+        const familyA = new family({ [[5, 11]]: 15, [[11, 4]]: 20 });
+        const paycheck = familyA.chargeForBabysitting(12, 2);
+
+        expect(paycheck).toEqual(40);
     });
 });

@@ -4,25 +4,55 @@ class Family {
     }
 
     chargeForBabysitting(startTime, endTime) {
-        let hoursWorked = this.calculateHoursWorked(startTime, endTime);
         let totalPay = 0;
+        let periodStart = startTime;
+        let periodEnd = endTime;
+
         for (const [key, value] of Object.entries(this.payAmountForTimeRange)) {
             const payWindowStart = parseInt(key.split(',')[0]);
-            const payWindowHours = this.calculateHoursWorked(parseInt(key.split(',')[0]), parseInt(key.split(',')[1]));
-            const hoursInPayWindow = Math.min(payWindowHours, hoursWorked);
+            const payWindowEnd = parseInt(key.split(',')[1]);
+
+            if (!this.timeIsWithinPeriod(periodStart, payWindowStart, payWindowEnd)) {
+                console.log(`The time ${periodStart} is not within the window of [${payWindowStart}, ${payWindowEnd}]`);
+               continue; 
+            }
+
+            periodEnd = this.timeIsWithinPeriod(periodEnd, payWindowStart, payWindowEnd) ? periodEnd : payWindowEnd;
+            const hoursInPayWindow = this.calculateHoursWorked(periodStart, periodEnd);
+            console.log(`Hours in pay window: ${hoursInPayWindow} at a rate of: ${value}`);
 
             totalPay += hoursInPayWindow * value;
-            hoursWorked -= hoursInPayWindow;
+            periodStart = payWindowEnd;
+            periodEnd = endTime;
+            if (this.timeIsWithinPeriod(endTime, payWindowStart, payWindowEnd)) {
+                break;
+            }
         }
         return totalPay;
     }
 
     calculateHoursWorked(startTime, endTime) {
         if (endTime < startTime) {
-            return endTime + 7; 
+            return (12 - startTime) + endTime; 
         }
         else {
             return endTime - startTime;
+        }
+    }
+
+    timeIsWithinPeriod(time, periodStart, periodEnd) {
+        if (time >= periodStart && time <= periodEnd) {
+            return true;
+        }
+        else if (time >= periodStart && time >= periodEnd && periodStart > periodEnd)
+        {
+            return true;
+        }
+        else if (time <= periodStart && time <= periodEnd && periodStart > periodEnd) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }
