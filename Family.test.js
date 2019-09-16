@@ -44,4 +44,10 @@ describe('the calculate pay function', () => {
         expect(paycheckTwo).toEqual(140);
         expect(paycheckThree).toEqual(80);
     });
+
+    it('throws an error when a start time is too early', () => {
+        const familyA = new family({ [[5, 4]]: 15 });
+
+        expect(() => familyA.chargeForBabysitting(4, 6)).toThrow(RangeError);
+    });
 });
