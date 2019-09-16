@@ -35,8 +35,10 @@ describe('the calculate pay function', () => {
         const familyA = new family({ [[5, 11]]: 15, [[11, 4]]: 20 });
         const paycheckOne = familyA.chargeForBabysitting(8, 9.5);
         const paycheckTwo = familyA.chargeForBabysitting(7, 2.5);
+        const paycheckThree = familyA.chargeForBabysitting(7.5, 12);
 
         expect(paycheckOne).toEqual(30);
         expect(paycheckTwo).toEqual(140);
+        expect(paycheckThree).toEqual(80);
     });
 });
