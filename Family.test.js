@@ -26,9 +26,12 @@ describe('the calculate pay function', () => {
 
     it('can skip a pay window entirely, without negatively impacting pay', () => {
         const familyA = new family({ [[5, 11]]: 15, [[11, 4]]: 20 });
-        const paycheck = familyA.chargeForBabysitting(12, 2);
+        const familyB = new family({ [[5, 9]]: 15, [[9, 11]]: 17.5, [[11, 4]]: 25 });
+        const paycheckOne = familyA.chargeForBabysitting(12, 2);
+        const paycheckTwo = familyB.chargeForBabysitting(12, 2);
 
-        expect(paycheck).toEqual(40);
+        expect(paycheckOne).toEqual(40);
+        expect(paycheckTwo).toEqual(50);
     });
 
     it('pays for fractional hours as if they are whole hours', () => {
