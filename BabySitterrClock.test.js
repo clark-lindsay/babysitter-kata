@@ -25,4 +25,15 @@ describe('BabySittersClock', () => {
         expect(clock.isEarlierThan(6, 6.5)).toEqual(true);
 
     });
+
+    test('it can validate that a start and end time fall within 5pm and 4am, and that the end is not before the start', () => {
+        const clock = new BabySittersClock();
+
+        expect(clock.startAndEndTimesAreValid(5, 4)).toEqual(true);
+        expect(clock.startAndEndTimesAreValid(5, 6)).toEqual(true);
+        expect(clock.startAndEndTimesAreValid(4, 7)).toEqual(false);
+        expect(clock.startAndEndTimesAreValid(10, 5)).toEqual(false);
+        expect(clock.startAndEndTimesAreValid(10, 6)).toEqual(false);
+        expect(clock.startAndEndTimesAreValid(10, 2)).toEqual(true);
+    });
 });
