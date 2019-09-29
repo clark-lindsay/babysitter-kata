@@ -6,4 +6,13 @@ describe('BabySittersClock', () => {
 
         expect(clock.calculateHoursWorked(5, 6)).toEqual(1);
     });
+
+    test('it can calculate multiple hours worked', () => {
+        const clock = new BabySittersClock();
+
+        expect(clock.calculateHoursWorked(5, 6)).toEqual(1);
+        expect(clock.calculateHoursWorked(5, 11)).toEqual(6);
+        expect(clock.calculateHoursWorked(7, 2)).toEqual(7);
+        expect(clock.calculateHoursWorked(5, 4)).toEqual(11);
+    });
 });

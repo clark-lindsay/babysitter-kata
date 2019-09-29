@@ -4,7 +4,12 @@ class BabySittersClock {
     }
 
     calculateHoursWorked(startTime, endTime) {
-        return 1;
+        if (endTime < startTime) {
+            return (12 - startTime) + endTime; 
+        }
+        else {
+            return endTime - startTime;
+        }
     }
 }
 
