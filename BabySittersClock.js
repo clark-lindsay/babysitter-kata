@@ -13,7 +13,13 @@ class BabySittersClock {
     }
 
     isEarlierThan(timeOne, timeTwo) {
-        if (this.times.indexOf(timeOne) < this.times.indexOf(timeTwo)) {
+        const hourOfTimeOne = Math.floor(timeOne);
+        const hourOfTimeTwo = Math.floor(timeTwo);
+
+        if (this.times.indexOf(hourOfTimeOne) < this.times.indexOf(hourOfTimeTwo)) {
+            return true;
+        }
+        else if (timeOne < timeTwo && hourOfTimeOne === hourOfTimeTwo) {
             return true;
         }
         else {

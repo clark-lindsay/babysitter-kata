@@ -21,5 +21,8 @@ describe('BabySittersClock', () => {
 
         expect(clock.isEarlierThan(5, 2)).toEqual(true);
         expect(clock.isEarlierThan(2, 5)).toEqual(false);
+        expect(clock.isEarlierThan(6.5, 6)).toEqual(false);
+        expect(clock.isEarlierThan(6, 6.5)).toEqual(true);
+
     });
 });
