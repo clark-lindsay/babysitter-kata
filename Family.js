@@ -60,13 +60,10 @@ class Family {
 
     validateStartAndEndTimes(startTime, endTime) {
         const earlyStartErrorMessage = 'The start time is too early. Valid start times are between 5pm and 4am';
-        const earlyEndErrorMessage = 'The end time is too late. Valid start times are between 5pm and 4am';
+        const lateEndErrorMessage = 'The end time is too late. Valid start times are between 5pm and 4am';
 
         if (startTime < 5 && endTime > 4) {
             throw new RangeError(earlyStartErrorMessage);
-        }
-        else if (endTime > 4 && startTime < 5) {
-            console.error('problem');
         }
     }
 }

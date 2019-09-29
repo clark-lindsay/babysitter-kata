@@ -50,4 +50,10 @@ describe('the calculate pay function', () => {
 
         expect(() => familyA.chargeForBabysitting(4, 6)).toThrow(RangeError);
     });
+
+    it('throws an error when an end time is too late', () => {
+        const familyA = new family({ [[5, 4]]: 15 });
+
+        expect(() => familyA.chargeForBabysitting(10, 5)).toThrow(RangeError);
+    });
 });
