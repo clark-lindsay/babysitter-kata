@@ -36,4 +36,15 @@ describe('BabySittersClock', () => {
         expect(clock.startAndEndTimesAreValid(10, 6)).toEqual(false);
         expect(clock.startAndEndTimesAreValid(10, 2)).toEqual(true);
     });
+
+    test('it can determine if a given time sits in a particular range', () => {
+        const clock = new BabySittersClock();
+
+        expect(clock.timeIsWithinPeriod(6, 5, 7)).toEqual(true);
+        expect(clock.timeIsWithinPeriod(5, 6, 7)).toEqual(false);
+        expect(clock.timeIsWithinPeriod(1, 10, 2)).toEqual(true);
+        expect(clock.timeIsWithinPeriod(6.5, 6, 7)).toEqual(true);
+        expect(clock.timeIsWithinPeriod(5.75, 5, 4)).toEqual(true);
+        expect(clock.timeIsWithinPeriod(5, 5, 4)).toEqual(true);
+    });
 });

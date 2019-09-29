@@ -35,6 +35,15 @@ class BabySittersClock {
             return true;
         }
     }
+
+    timeIsWithinPeriod(time, periodStartTime, periodEndTime) {
+        if (this.isEarlierThan(time, periodEndTime) && !this.isEarlierThan(time, periodStartTime)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
 
 module.exports = BabySittersClock;
