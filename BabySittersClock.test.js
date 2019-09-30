@@ -41,7 +41,7 @@ describe('BabySittersClock', () => {
 
     });
 
-    test('it can validate that a start and end time fall within 5pm and 4am, and that the end is not before the start', () => {
+    test('it can validate that the end time is not before the start time', () => {
         const clock = new BabySittersClock();
 
         expect(clock.startAndEndTimesAreValid(5, 4)).toEqual(true);
