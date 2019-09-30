@@ -63,5 +63,6 @@ describe('BabySittersClock', () => {
         expect(clock.timeIsWithinPeriod(6.5, 6, 7)).toEqual(true);
         expect(clock.timeIsWithinPeriod(5.75, 5, 4)).toEqual(true);
         expect(clock.timeIsWithinPeriod(5, 5, 4)).toEqual(true);
+        expect(clock.timeIsWithinPeriod(4, 11, 4)).toEqual(true);
     });
 });

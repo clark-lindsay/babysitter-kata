@@ -49,7 +49,7 @@ class BabySittersClock {
     }
 
     timeIsWithinPeriod(time, periodStartTime, periodEndTime) {
-        if (this.isEarlierThan(time, periodEndTime) && !this.isEarlierThan(time, periodStartTime)) {
+        if ((this.isEarlierThan(time, periodEndTime) || time === periodEndTime) && !this.isEarlierThan(time, periodStartTime)) {
             return true;
         }
         else {
