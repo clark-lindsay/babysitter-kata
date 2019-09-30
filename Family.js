@@ -1,6 +1,9 @@
+const BabySittersClock = require('./BabySittersClock');
+
 class Family {
     constructor(payAmountForTimeRange) {
         this.payAmountForTimeRange = payAmountForTimeRange;
+        this.sittersClock = new BabySittersClock();
     }
 
     chargeForBabysitting(startTime, endTime) {
@@ -18,7 +21,7 @@ class Family {
             }
 
             periodEnd = this.timeIsWithinPeriod(periodEnd, payWindowStart, payWindowEnd) ? periodEnd : payWindowEnd;
-            const hoursInPayWindow = this.calculateHoursWorked(Math.floor(periodStart), Math.ceil(periodEnd));
+            const hoursInPayWindow = this.sittersClock.calculateHoursWorked(periodStart, periodEnd);
 
             totalPay += hoursInPayWindow * value;
             if (this.timeIsWithinPeriod(endTime, payWindowStart, payWindowEnd)) {
@@ -29,15 +32,6 @@ class Family {
             periodEnd = endTime;
         }
         return totalPay;
-    }
-
-    calculateHoursWorked(startTime, endTime) {
-        if (endTime < startTime) {
-            return (12 - startTime) + endTime; 
-        }
-        else {
-            return endTime - startTime;
-        }
     }
 
     timeIsWithinPeriod(time, periodStart, periodEnd) {
