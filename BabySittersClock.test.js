@@ -46,10 +46,16 @@ describe('BabySittersClock', () => {
 
         expect(clock.startAndEndTimesAreValid(5, 4)).toEqual(true);
         expect(clock.startAndEndTimesAreValid(5, 6)).toEqual(true);
-        expect(clock.startAndEndTimesAreValid(4, 7)).toEqual(false);
-        expect(clock.startAndEndTimesAreValid(10, 5)).toEqual(false);
-        expect(clock.startAndEndTimesAreValid(10, 6)).toEqual(false);
+        expect(clock.startAndEndTimesAreValid(10, 7)).toEqual(false);
         expect(clock.startAndEndTimesAreValid(10, 2)).toEqual(true);
+        expect(clock.startAndEndTimesAreValid(3, 5)).toEqual(false);
+    });
+
+    test('it can validate that a start and end time fall within 5pm and 4am', () => {
+        const clock = new BabySittersClock();
+
+        expect(clock.startAndEndTimesAreValid(12, 4.5)).toEqual(false);
+        expect(clock.startAndEndTimesAreValid(10, 5)).toEqual(false);
         expect(clock.startAndEndTimesAreValid(4, 6)).toEqual(false);
         expect(clock.startAndEndTimesAreValid(2, 4.25)).toEqual(false);
     });
