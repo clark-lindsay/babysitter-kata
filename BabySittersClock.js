@@ -4,6 +4,10 @@ class BabySittersClock {
     }
 
     calculateHoursWorked(startTime, endTime) {
+        if (!this.startAndEndTimesAreValid(startTime, endTime)) {
+            throw new RangeError('Valid start and end times must be between 5pm and 4am, inclusive.');
+        }
+
         if (endTime < startTime) {
             return (12 - startTime) + endTime; 
         }
@@ -29,6 +33,12 @@ class BabySittersClock {
 
     startAndEndTimesAreValid(startTime, endTime) {
         if (!this.isEarlierThan(startTime, endTime)) {
+            return false;
+        }
+        else if (endTime > 4 && endTime < 5) {
+            return false;
+        }
+        else if (startTime < 5 && startTime > 4) {
             return false;
         }
         else {

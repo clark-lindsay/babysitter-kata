@@ -16,6 +16,12 @@ describe('BabySittersClock', () => {
         expect(clock.calculateHoursWorked(5, 4)).toEqual(11);
     });
 
+    test('it will throw an error if asked to calculate the hours worked for an invalid time period', () => {
+        const clock = new BabySittersClock();
+
+        expect(() => clock.calculateHoursWorked(11, 4.5)).toThrow(RangeError);
+    });
+
     test('it can tell you if one time is earlier than another', () => {
         const clock = new BabySittersClock();
 
@@ -35,6 +41,8 @@ describe('BabySittersClock', () => {
         expect(clock.startAndEndTimesAreValid(10, 5)).toEqual(false);
         expect(clock.startAndEndTimesAreValid(10, 6)).toEqual(false);
         expect(clock.startAndEndTimesAreValid(10, 2)).toEqual(true);
+        expect(clock.startAndEndTimesAreValid(4, 6)).toEqual(false);
+        expect(clock.startAndEndTimesAreValid(2, 4.25)).toEqual(false);
     });
 
     test('it can determine if a given time sits in a particular range', () => {
