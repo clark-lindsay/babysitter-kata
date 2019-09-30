@@ -3,7 +3,7 @@
     "extends": [
         "plugin:import/errors",
         "plugin:import/warnings",
-        "prettier",
+        "prettier"
     ],
     "env": {
         "browser": true,
@@ -62,7 +62,6 @@
         "prettier/prettier": "error"
     },
     "plugins": [
-        "react",
         "import",
         "prettier"
     ],
