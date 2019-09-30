@@ -16,15 +16,15 @@ class Family {
             const payWindowStart = parseInt(key.split(',')[0]);
             const payWindowEnd = parseInt(key.split(',')[1]);
 
-            if (!this.timeIsWithinPeriod(periodStart, payWindowStart, payWindowEnd)) {
+            if (!this.sittersClock.timeIsWithinPeriod(periodStart, payWindowStart, payWindowEnd)) {
                continue; 
             }
 
-            periodEnd = this.timeIsWithinPeriod(periodEnd, payWindowStart, payWindowEnd) ? periodEnd : payWindowEnd;
+            periodEnd = this.sittersClock.timeIsWithinPeriod(periodEnd, payWindowStart, payWindowEnd) ? periodEnd : payWindowEnd;
             const hoursInPayWindow = this.sittersClock.calculateHoursWorked(periodStart, periodEnd);
 
             totalPay += hoursInPayWindow * value;
-            if (this.timeIsWithinPeriod(endTime, payWindowStart, payWindowEnd)) {
+            if (this.sittersClock.timeIsWithinPeriod(endTime, payWindowStart, payWindowEnd)) {
                 break;
             }
 
@@ -32,24 +32,6 @@ class Family {
             periodEnd = endTime;
         }
         return totalPay;
-    }
-
-    timeIsWithinPeriod(time, periodStart, periodEnd) {
-        const clockPassesMidnight = periodStart > periodEnd;
-
-        if (time >= periodStart && time <= periodEnd) {
-            return true;
-        }
-        else if (time >= periodStart && time >= periodEnd && clockPassesMidnight)
-        {
-            return true;
-        }
-        else if (time <= periodStart && time <= periodEnd && clockPassesMidnight) {
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 
     validateStartAndEndTimes(startTime, endTime) {
