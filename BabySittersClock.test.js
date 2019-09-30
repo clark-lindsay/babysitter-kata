@@ -16,10 +16,19 @@ describe('BabySittersClock', () => {
         expect(clock.calculateHoursWorked(5, 4)).toEqual(11);
     });
 
+    test('it calculates hours worked counting partial hours as whole hours', () => {
+        const clock = new BabySittersClock();
+
+        expect(clock.calculateHoursWorked(5.75, 7)).toEqual(2);
+        expect(clock.calculateHoursWorked(6, 8.25)).toEqual(3);
+        expect(clock.calculateHoursWorked(5.75, 3.75)).toEqual(11);
+    });
+
     test('it will throw an error if asked to calculate the hours worked for an invalid time period', () => {
         const clock = new BabySittersClock();
 
         expect(() => clock.calculateHoursWorked(11, 4.5)).toThrow(RangeError);
+        expect(() => clock.calculateHoursWorked(4, 8)).toThrow(RangeError);
     });
 
     test('it can tell you if one time is earlier than another', () => {

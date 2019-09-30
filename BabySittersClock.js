@@ -8,11 +8,13 @@ class BabySittersClock {
             throw new RangeError('Valid start and end times must be between 5pm and 4am, inclusive.');
         }
 
+        const effectiveStartingHour = Math.floor(startTime);
+        const effectiveEndingHour = Math.ceil(endTime);
         if (endTime < startTime) {
-            return (12 - startTime) + endTime; 
+            return (12 - effectiveStartingHour) + effectiveEndingHour; 
         }
         else {
-            return endTime - startTime;
+            return effectiveEndingHour - effectiveStartingHour;
         }
     }
 
